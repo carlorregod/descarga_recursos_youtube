@@ -8,6 +8,10 @@ Descarga de vídeos de Youtube
 
 - Python 3.6 o superior y pip
 - Entorno virtual con las dependencias instaladas del fichero [requirements.txt](requirements.txt)
+- Ejecutar comando:
+ 
+   `python -m pip3 install --upgrade pytube` en Linux       
+   `pip3 install --upgrade pytube` en Windows
 
 
 ## Configuraciones 
