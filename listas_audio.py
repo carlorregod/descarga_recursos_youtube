@@ -1,5 +1,6 @@
 import pytube
 import os
+from pytube.cli import on_progress
 
 '''
 #se necesita instalar pytube con 
@@ -9,8 +10,8 @@ o con
 pip install pytube==10.8.2
 '''
 
-url = str(input('ingresar url de la lista de reproducción de canciones: '))
-#url= 'https://www.youtube.com/playlist?list=PLU8oAlHdN5BlyaPFiNQcV0xDqy0eR35aU'
+#url = str(input('ingresar url de la lista de reproducción de canciones: '))
+url= 'https://www.youtube.com/playlist?list=PLU8oAlHdN5BlyaPFiNQcV0xDqy0eR35aU'
 try:
     playlist= pytube.Playlist(url)
     my_routes = os.path.dirname(os.path.realpath(__file__))
@@ -24,7 +25,7 @@ try:
     contador =1
     print('Número de videos en lista: %s' % len(playlist.video_urls))
     for video_url in playlist.video_urls:
-        yt = pytube.YouTube(video_url)
+        yt = pytube.YouTube(video_url, on_progress_callback=on_progress)
         print(f"Titulo .........: {yt.title}")
         print(f"Duracion (seg)..: {yt.length}")
         print(f"Descripcion.....: {yt.description}")

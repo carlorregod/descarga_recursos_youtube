@@ -12,7 +12,12 @@ Descarga de vídeos de Youtube
 
 ## Configuraciones 
 
-Sólo debe suministrar la url de la lista o video en los archivos
+Sólo debe suministrar la url de la lista o video en los archivos.
+
+Es posible que tengan problemas descargue FFmpeg desde [este enlace]('https://ffmpeg.org/download.html').
+
+En Linux Ubuntu: 
+>**sudo apt install ffmpeg**
 
 ## Cómo usarlo
 Abrir una consola dentro del repositorio de clonación y...
