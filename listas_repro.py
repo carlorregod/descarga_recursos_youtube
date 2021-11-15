@@ -1,5 +1,6 @@
 import pytube
 import os
+import re
 from pytube.cli import on_progress
 
 '''
@@ -19,13 +20,13 @@ if opcion not in ['1','2',1,2]:
 try:
     playlist= pytube.Playlist(url)
     my_routes = os.path.dirname(os.path.realpath(__file__))
-    carpeta= playlist.title
-    route =  my_routes+"/"+carpeta
+    carpeta= re.sub("[^0-9a-zA-ZáéíóúÁÉÍÓÚ ]","",playlist.title)
+    route =  my_routes+"\\"+carpeta if os.name == 'nt' else my_routes+"/"+carpeta
     try:
-        os.mkdir(my_routes+"/"+carpeta)    
+        os.mkdir(route)    
         print(f'Se descargará en: {route}')
     except Exception as e:
-        print(f'Ya existe la ruta: {my_routes+"/"+carpeta}')
+        print(f'Ya existe la ruta: {route}')
     contador =1
     print('Número de videos en lista: %s' % len(playlist.video_urls))
     for video_url in playlist.video_urls:
