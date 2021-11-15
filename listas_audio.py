@@ -1,5 +1,6 @@
 import pytube
 import os
+import re
 from pytube.cli import on_progress
 
 '''
@@ -15,10 +16,10 @@ url= 'https://www.youtube.com/playlist?list=PLU8oAlHdN5BlyaPFiNQcV0xDqy0eR35aU'
 try:
     playlist= pytube.Playlist(url)
     my_routes = os.path.dirname(os.path.realpath(__file__))
-    carpeta= playlist.title
-    route =  my_routes+"/"+carpeta
+    carpeta= re.sub("[^0-9a-zA-ZáéíóúÁÉÍÓÚ ]","",playlist.title)
+    route =  my_routes+"\\"+carpeta if os.name == 'nt' else my_routes+"/"+carpeta
     try:
-        os.mkdir(my_routes+"/"+carpeta)    
+        os.mkdir(route)    
         print(f'Se descargará en: {route}')
     except Exception as e:
         print(f'Ya existe la ruta: {my_routes+"/"+carpeta}')
